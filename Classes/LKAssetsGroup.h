@@ -8,6 +8,8 @@
 #import <Foundation/Foundation.h>
 #import <AssetsLibrary/AssetsLibrary.h>
 
+@class LKAsset;
+
 // Notifications
 extern NSString * const LKAssetsGroupDidReloadNotification;
 
@@ -20,6 +22,8 @@ extern NSString * const LKAssetsGroupDidReloadNotification;
 @property (weak  , nonatomic, readonly) NSURL*      url;
 @property (assign, nonatomic, readonly) NSUInteger  type;               // ALAssetsGroupType
 @property (assign, nonatomic, readonly) NSInteger   numberOfAssets;
+@property (nonatomic, assign, readonly) NSString *persistentId;
+@property (nonatomic, assign, readonly) BOOL isLoaded;
 
 // Properties (Asset)
 @property (strong, nonatomic, readonly) NSArray* assets;    // should call -reloadAssets before accessing it
@@ -30,6 +34,8 @@ extern NSString * const LKAssetsGroupDidReloadNotification;
 // Operations
 - (void)reloadAssets;   // should be called before accessing assets
 - (void)unloadAssets;
+
+- (void) addAsset:(LKAsset *)asset sendNotification:(BOOL)shouldSendNotification;
 
 // Etc
 - (NSComparisonResult)compare:(LKAssetsGroup*)assetsGroup;

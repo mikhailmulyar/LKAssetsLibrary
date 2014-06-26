@@ -192,6 +192,37 @@ static NSDateFormatter* _dateFormatter = nil;
     return _fileExtension;
 }
 
+- (NSString *) filename
+{
+	return [self.asset defaultRepresentation].filename;
+}
+
+- (NSString *) UTI
+{
+	return [self.asset defaultRepresentation].UTI;
+}
+
+- (NSNumber *) duration
+{
+	return [self.asset valueForProperty:ALAssetPropertyDuration];
+}
+
+- (ALAssetOrientation) orientation
+{
+	return [self.asset defaultRepresentation].orientation;
+}
+
+- (float) scale
+{
+	return [self.asset defaultRepresentation].scale;
+}
+
+- (long long) int
+{
+	return [self.asset defaultRepresentation].size;
+}
+
+
 #pragma mark -
 #pragma mark Properties (Attribute)
 - (BOOL)isJPEG

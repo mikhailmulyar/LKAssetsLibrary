@@ -18,6 +18,8 @@ typedef NS_ENUM(NSInteger, LKAssetType) {
 
 @interface LKAsset : NSObject
 
+@property (strong, nonatomic, readonly) ALAsset *asset;
+
 // Properties (Status)
 @property (assign, nonatomic, readonly) BOOL deleted;
 
@@ -38,6 +40,12 @@ typedef NS_ENUM(NSInteger, LKAssetType) {
 @property (strong, nonatomic, readonly) NSString* fileExtension;    // upper string JPG, PNG, ...
 @property (assign, nonatomic, readonly) CGSize size;
 @property (assign, nonatomic, readonly) LKAssetType type;
+@property (strong, nonatomic, readonly) NSString  *filename;
+@property (strong, nonatomic, readonly) NSString  *UTI;
+@property (strong, nonatomic, readonly) NSNumber  *duration;
+@property (assign, nonatomic, readonly) ALAssetOrientation orientation;
+@property (assign, nonatomic, readonly) float     scale;
+@property (assign, nonatomic, readonly) long long bytesCount;
 
 // Properties (Filter)
 @property (assign, nonatomic, readonly) BOOL isJPEG;

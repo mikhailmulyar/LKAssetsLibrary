@@ -30,6 +30,8 @@ extern NSString * const LKAssetsLibraryGroupsKey;
 @class LKAssetsGroup;
 @interface LKAssetsLibrary : NSObject
 
+@property (strong, nonatomic, readonly) ALAssetsLibrary *assetsLibrary;
+
 // Properties (Group)
 @property (weak, nonatomic, readonly) NSArray* assetsGroups;    // <LKAssetsGroup>
 

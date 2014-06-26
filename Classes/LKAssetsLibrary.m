@@ -78,7 +78,7 @@ NSString* const LKAssetsLibraryGroupsKey = @"LKAssetsLibraryGroupsKey";
     }];
 }
 
-- (void)_assetsLibrarychanged:(NSNotification*)notification
+- (void)_assetsLibraryChanged:(NSNotification*)notification
 {
     NSDictionary * userInfo = notification.userInfo;
     if (userInfo) {
@@ -167,7 +167,7 @@ NSString* const LKAssetsLibraryGroupsKey = @"LKAssetsLibraryGroupsKey";
     self = [super init];
     if (self) {
         [NSNotificationCenter.defaultCenter addObserver:self
-                                               selector:@selector(_assetsLibrarychanged:)
+                                               selector:@selector(_assetsLibraryChanged:)
                                                    name:ALAssetsLibraryChangedNotification
                                                  object:nil];
         self.assetsGroupClass = LKAssetsGroup.class;

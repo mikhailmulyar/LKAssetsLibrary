@@ -12,6 +12,8 @@
 NSString* const LKAssetsGroupDidReloadNotification = @"LKAssetsGroupDidReloadNotification";
 
 @interface LKAssetsGroup()
+
+@property (nonatomic, assign) BOOL isLoaded;
 @property (strong, nonatomic) ALAssetsGroup* assetsGroup;
 @property (strong, nonatomic) NSArray* assets;
 
@@ -79,6 +81,12 @@ NSString* const LKAssetsGroupDidReloadNotification = @"LKAssetsGroupDidReloadNot
     return [self.assetsGroup valueForProperty:ALAssetsGroupPropertyName];
 }
 
+- (NSString *) persistentId
+{
+	return [self.assetsGroup valueForProperty:ALAssetsGroupPropertyPersistentID];
+}
+
+
 - (UIImage*)posterImage
 {
     return [UIImage imageWithCGImage:self.assetsGroup.posterImage];
@@ -123,6 +131,7 @@ NSString* const LKAssetsGroupDidReloadNotification = @"LKAssetsGroupDidReloadNot
                 // completed
                 _weak_self.assets = [_weak_self.temporaryAssets sortedArrayUsingSelector:@selector(compare:)];
                 _weak_self.temporaryAssets = nil;
+				_weak_self.isLoaded = YES;
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [NSNotificationCenter.defaultCenter postNotificationName:LKAssetsGroupDidReloadNotification
                                                                       object:_weak_self];
@@ -136,5 +145,17 @@ NSString* const LKAssetsGroupDidReloadNotification = @"LKAssetsGroupDidReloadNot
 {
     self.assets = nil;
 }
+
+- (void) addAsset:(LKAsset *)asset sendNotification:(BOOL)shouldSendNotification
+{
+	[self.assetsGroup addAsset:asset.asset];
+
+	self.assets = [self.assets arrayByAddingObject:asset];
+
+	if (shouldSendNotification)
+		[NSNotificationCenter.defaultCenter postNotificationName:LKAssetsGroupDidReloadNotification
+														  object:self];
+}
+
 
 @end
