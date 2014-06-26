@@ -35,7 +35,7 @@ extern NSString * const LKAssetsGroupDidReloadNotification;
 - (void)reloadAssets;   // should be called before accessing assets
 - (void)unloadAssets;
 
-- (void) addAsset:(LKAsset *)asset sendNotification:(BOOL)shouldSendNotification;
+- (BOOL) addAsset:(LKAsset *)asset sendNotification:(BOOL)shouldSendNotification;
 
 // Etc
 - (NSComparisonResult)compare:(LKAssetsGroup*)assetsGroup;

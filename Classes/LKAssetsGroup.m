@@ -146,15 +146,20 @@ NSString* const LKAssetsGroupDidReloadNotification = @"LKAssetsGroupDidReloadNot
     self.assets = nil;
 }
 
-- (void) addAsset:(LKAsset *)asset sendNotification:(BOOL)shouldSendNotification
+- (BOOL) addAsset:(LKAsset *)asset sendNotification:(BOOL)shouldSendNotification
 {
-	[self.assetsGroup addAsset:asset.asset];
+	BOOL added = [self.assetsGroup addAsset:asset.asset];
+
+	if (!added)
+		return added;
 
 	self.assets = [self.assets arrayByAddingObject:asset];
 
 	if (shouldSendNotification)
 		[NSNotificationCenter.defaultCenter postNotificationName:LKAssetsGroupDidReloadNotification
 														  object:self];
+
+	return added;
 }
 
 
