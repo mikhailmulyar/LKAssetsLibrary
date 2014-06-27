@@ -13,7 +13,6 @@ NSString* const LKAssetsGroupDidReloadNotification = @"LKAssetsGroupDidReloadNot
 
 @interface LKAssetsGroup()
 
-@property (nonatomic, assign) BOOL isLoaded;
 @property (strong, nonatomic) ALAssetsGroup* assetsGroup;
 @property (strong, nonatomic) NSArray* assets;
 
@@ -131,7 +130,6 @@ NSString* const LKAssetsGroupDidReloadNotification = @"LKAssetsGroupDidReloadNot
                 // completed
                 _weak_self.assets = [_weak_self.temporaryAssets sortedArrayUsingSelector:@selector(compare:)];
                 _weak_self.temporaryAssets = nil;
-				_weak_self.isLoaded = YES;
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [NSNotificationCenter.defaultCenter postNotificationName:LKAssetsGroupDidReloadNotification
                                                                       object:_weak_self];

@@ -23,7 +23,7 @@ extern NSString * const LKAssetsGroupDidReloadNotification;
 @property (assign, nonatomic, readonly) NSUInteger  type;               // ALAssetsGroupType
 @property (assign, nonatomic, readonly) NSInteger   numberOfAssets;
 @property (nonatomic, assign, readonly) NSString *persistentId;
-@property (nonatomic, assign, readonly) BOOL isLoaded;
+@property (nonatomic, assign) BOOL isLoaded;
 
 // Properties (Asset)
 @property (strong, nonatomic, readonly) NSArray* assets;    // should call -reloadAssets before accessing it
